@@ -1,0 +1,6 @@
+{
+  "name": "Celest 凱棋 3D Particles",
+  "description": "A real-time interactive 3D particle system controlled by hand gestures using the webcam.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}
