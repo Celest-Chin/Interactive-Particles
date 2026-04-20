@@ -136,7 +136,6 @@ export default function App() {
                   src="/Portfolio-IP/signature.png" 
                   alt="Celest 凱棋 Signature" 
                   className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]"
-                  }}
                 />
               </div>
 
@@ -173,7 +172,6 @@ export default function App() {
                 animate={{ filter: 'drop-shadow(0px 0px 8px rgba(0, 255, 255, 0.6))' }}
                 transition={{ duration: 3, delay: 0.5, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
                 className="h-10 md:h-12 object-contain transition-transform group-hover:scale-105"
-                }}
               />
               <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-1 ml-1">Interactive Particles</p>
             </button>
