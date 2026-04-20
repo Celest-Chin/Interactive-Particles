@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Maximize, Minimize, Settings2, Share2, Check } from 'lucide-react';
 import { ParticleEngine } from './lib/ParticleEngine';
 
