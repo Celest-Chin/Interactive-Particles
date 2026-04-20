@@ -22,11 +22,6 @@ export default function App() {
     engineRef.current = engine;
     return () => engine.dispose();
   }, []);
-  useEffect(() => {
-    if (engineRef.current) {
-      engineRef.current.updateSettings({ shape, color, particleSize });
-    }
-  }, [shape, color, particleSize]);
 
   const toggleCamera = async () => {
     if (!videoRef.current) return;
