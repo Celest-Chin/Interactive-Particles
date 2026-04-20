@@ -143,6 +143,7 @@ export default function App() {
             </button>
           </div>
          )}
+
       </div>
 
       <video ref={videoRef} className="hidden" playsInline muted />
