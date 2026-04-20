@@ -53,7 +53,7 @@ export default function App() {
           <motion.div exit={{ opacity: 0 }} className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
             <span className="text-gray-400 text-2xl mb-8">Welcome to</span>
             {/* Remove the dot below */}
-            <img src="/Interactive-Particles/signature.png" alt="Signature" className="h-32 mb-12" />
+            <img src="./signature.png" alt="Signature" className="h-32 mb-12" />
             <span className="text-gray-400 text-2xl mb-12">Interactive Particles</span>
             <button onClick={() => setShowWelcome(false)} className="px-8 py-3 rounded-full border border-blue-500 bg-blue-900/30 uppercase tracking-widest">
               Click to Enter
@@ -65,7 +65,7 @@ export default function App() {
       <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-6">
         <div className="flex justify-between items-start">
           <button onClick={() => setShowWelcome(true)} className="pointer-events-auto">
-            <img src="/Interactive-Particles/signature.png" alt="Logo" className="h-10" />
+            <img src="./signature.png" alt="Logo" className="h-10" />
           </button>
           
           <div className="flex gap-4 pointer-events-auto">
