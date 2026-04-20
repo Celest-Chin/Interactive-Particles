@@ -133,7 +133,7 @@ export default function App() {
               
               <div className="mb-12 relative">
                 <img 
-                  src="./signature.png" 
+                  src="/Portfolio-IP/signature.png" 
                   alt="Celest 凱棋 Signature" 
                   className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]"
                   }}
@@ -167,7 +167,7 @@ export default function App() {
               className="group flex flex-col items-start focus:outline-none"
             >
               <motion.img 
-                src="./signature.png" 
+                src="/Portfolio-IP/signature.png" 
                 alt="Celest Chin Signature"
                 initial={{ filter: 'drop-shadow(0px 0px 0px rgba(0, 255, 255, 0))' }}
                 animate={{ filter: 'drop-shadow(0px 0px 8px rgba(0, 255, 255, 0.6))' }}
