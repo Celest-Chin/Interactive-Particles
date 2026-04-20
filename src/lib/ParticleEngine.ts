@@ -69,7 +69,18 @@ export class ParticleEngine {
     
     this.animate();
   }
-  
+    updateSettings(settings: { shape?: string; color?: string; particleSize?: number }) {
+    if (settings.shape) {
+      this.generateShape(settings.shape);
+    }
+    if (settings.color) {
+      this.material.color.set(settings.color);
+    }
+    if (settings.particleSize) {
+      this.material.size = settings.particleSize;
+    }
+  }
+
   public setShape(shape: ShapeType) {
     this.currentShape = shape;
     this.generateShape(shape);
