@@ -56,7 +56,8 @@ export default function App() {
             {/* Remove the dot below */}
             <img src={signatureImg} alt="Signature" className="h-32 mb-12" />
             <span className="text-gray-400 text-2xl mb-12">Interactive Particles</span>
-            <button onClick={() => setShowWelcome(false)} className="px-8 py-3 rounded-full border border-blue-500 bg-blue-900/30 uppercase tracking-widest">
+            <button onClick={() => { setShowWelcome(false); toggleCamera(); }} className="px-8 py-3 rounded-full border border-blue-500 bg-blue-900/30 uppercase tracking-widest text-sm font-medium hover:bg-blue-800/40 transition-colors">
+>
               Click to Enter
             </button>
           </motion.div>
