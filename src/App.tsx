@@ -1,7 +1,7 @@
 import signatureImg from '../signature.png';
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Maximize, Minimize, Settings2, Share2, Check, Camera, CameraOff } from 'lucide-react';
+import { Maximize, Minimize, Share2, Check, Camera, CameraOff } from 'lucide-react';
 import { ParticleEngine } from './lib/ParticleEngine';
 import { HandTracker } from './lib/HandTracker';
 
@@ -10,11 +10,15 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const engineRef = useRef<ParticleEngine | null>(null);
   const trackerRef = useRef<HandTracker | null>(null);
+  
   const [showWelcome, setShowWelcome] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showCameraModal, setShowCameraModal] = useState(false);
+  const [shape, setShape] = useState<'sphere' | 'cube' | 'torus' | 'plane'>('sphere');
+  const [color, setColor] = useState('#3b82f6');
+  const [particleSize, setParticleSize] = useState(0.05);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -22,6 +26,16 @@ export default function App() {
     engineRef.current = engine;
     return () => engine.dispose();
   }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
 
   const toggleCamera = async () => {
     if (!videoRef.current) return;
@@ -53,7 +67,6 @@ export default function App() {
         {showWelcome && (
           <motion.div exit={{ opacity: 0 }} className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
             <span className="text-gray-400 text-2xl mb-8">Welcome to</span>
-            {/* Remove the dot below */}
             <img src={signatureImg} alt="Signature" className="h-32 mb-12" />
             <span className="text-gray-400 text-2xl mb-12">Interactive Particles</span>
             <button onClick={() => { setShowWelcome(false); setShowCameraModal(true); }} className="px-8 py-3 rounded-full border border-blue-500 bg-blue-900/30 uppercase tracking-widest text-sm font-medium hover:bg-blue-800/40 transition-colors">
@@ -69,7 +82,7 @@ export default function App() {
             <img src={signatureImg} alt="Logo" className="h-10" />
           </button>
           
-                    <div className="flex gap-4 pointer-events-auto">
+          <div className="flex gap-4 pointer-events-auto">
             <button onClick={toggleCamera} className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md">
               {isCameraActive ? <CameraOff size={20} /> : <Camera size={20} />}
             </button>
@@ -90,7 +103,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Camera Request Modal */}
       <AnimatePresence>
         {showCameraModal && (
           <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md pointer-events-auto">
@@ -106,7 +118,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Control Panel (Bottom Left) */}
       <div className="absolute bottom-10 left-10 z-20 pointer-events-auto p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl min-w-[280px]">
         <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-4">Model</p>
         <div className="flex gap-2 mb-6">
@@ -132,7 +143,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Camera Status (Bottom Right) */}
       <div className="absolute bottom-10 right-10 z-20 pointer-events-auto">
         {!isCameraActive && (
           <div className="flex flex-col items-center gap-2 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-center">
@@ -142,7 +152,7 @@ export default function App() {
               <Camera size={14} /> Start Hand Tracking
             </button>
           </div>
-         )}
+        )}
       </div>
 
       <video ref={videoRef} className="hidden" playsInline muted />
