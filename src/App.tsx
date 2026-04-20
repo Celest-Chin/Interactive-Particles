@@ -1,3 +1,4 @@
+import signatureImg from '../signature.png';
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Maximize, Minimize, Settings2, Share2, Check, Camera, CameraOff } from 'lucide-react';
