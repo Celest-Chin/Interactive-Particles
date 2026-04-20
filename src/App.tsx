@@ -110,10 +110,8 @@ export default function App() {
 
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden font-sans text-white">
-      {/* 3D Canvas Container */}
       <div ref={containerRef} className="absolute inset-0 z-0" />
       
-      {/* Welcome Overlay */}
       <AnimatePresence>
         {showWelcome && (
           <motion.div 
@@ -155,10 +153,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* UI Controls */}
       <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-6">
-        
-        {/* Top Bar */}
         <div className="flex justify-between items-start">
           <div className="pointer-events-auto">
             <button 
@@ -181,14 +176,8 @@ export default function App() {
             <button 
               onClick={handleShare}
               className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md relative group"
-              title="Share App"
             >
               {copied ? <Check size={20} className="text-green-400" /> : <Share2 size={20} />}
-              {copied && (
-                <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-green-500 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">
-                  Link Copied!
-                </span>
-              )}
             </button>
             <button 
               onClick={() => setShowControls(!showControls)}
@@ -204,124 +193,8 @@ export default function App() {
             </button>
           </div>
         </div>
-
-        {/* Bottom Controls */}
-        <AnimatePresence>
-          {showControls && (
-            <motion.div 
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              className="pointer-events-auto flex flex-col md:flex-row gap-6 items-end justify-between"
-            >
-              {/* Control Panel */}
-              <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 w-full md:w-auto max-w-md shadow-2xl">
-                
-                <div className="space-y-6">
-                  {/* Shape Selector */}
-                  <div>
-                    <label className="text-xs text-gray-400 uppercase tracking-wider mb-3 block">Model</label>
-                    <div className="flex gap-2 bg-black/50 p-1 rounded-lg border border-white/5">
-                      {(['sphere', 'cube', 'torus', 'plane'] as ShapeType[]).map((s) => (
-                        <button
-                          key={s}
-                          onClick={() => setShape(s)}
-                          className={`flex-1 py-2 px-3 rounded-md text-sm capitalize transition-all ${
-                            shape === s 
-                              ? 'bg-white/20 text-white shadow-sm' 
-                              : 'text-gray-400 hover:text-white hover:bg-white/5'
-                          }`}
-                        >
-                          {s}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Color & Size */}
-                  <div className="flex gap-6">
-                    <div className="flex-1">
-                      <label className="text-xs text-gray-400 uppercase tracking-wider mb-3 block">Color</label>
-                      <div className="flex items-center gap-3">
-                        <input 
-                          type="color" 
-                          value={color}
-                          onChange={(e) => setColor(e.target.value)}
-                          className="w-8 h-8 rounded cursor-pointer bg-transparent border-0 p-0"
-                        />
-                        <span className="text-sm font-mono text-gray-300">{color}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1">
-                      <label className="text-xs text-gray-400 uppercase tracking-wider mb-3 block">Size</label>
-                      <input 
-                        type="range" 
-                        min="0.005" 
-                        max="0.1" 
-                        step="0.005"
-                        value={particleSize}
-                        onChange={(e) => setParticleSize(parseFloat(e.target.value))}
-                        className="w-full accent-cyan-400"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Camera Widget */}
-              <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col items-center gap-4 shadow-2xl">
-                <div className="relative w-48 h-36 bg-black/80 rounded-lg overflow-hidden border border-white/5">
-                  <video 
-                    ref={videoRef} 
-                    className="w-full h-full object-cover transform scale-x-[-1]" 
-                    playsInline 
-                    muted 
-                  />
-                  {!isCameraActive && (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-500 flex-col gap-2">
-                      <CameraOff size={24} />
-                      <span className="text-xs">Camera Off</span>
-                    </div>
-                  )}
-                  {isCameraActive && (
-                    <div className="absolute bottom-2 right-2 bg-black/60 px-2 py-1 rounded text-[10px] font-mono text-cyan-400 border border-cyan-400/30">
-                      Openness: {(openness * 100).toFixed(0)}%
-                    </div>
-                  )}
-                </div>
-                
-                {cameraError && (
-                  <div className="text-xs text-red-400 text-center bg-red-500/10 p-3 rounded-lg border border-red-500/20 flex flex-col gap-2">
-                    <p>{cameraError}</p>
-                    <button 
-                      onClick={() => window.open(window.location.href, '_blank')}
-                      className="bg-red-500/20 hover:bg-red-500/30 text-red-300 py-1.5 px-3 rounded border border-red-500/30 transition-colors mt-1"
-                    >
-                      Open in New Tab
-                    </button>
-                  </div>
-                )}
-                
-                <button 
-                  onClick={toggleCamera}
-                  disabled={isCameraLoading}
-                  className={`w-full py-3 rounded-xl flex items-center justify-center gap-2 text-sm font-medium transition-all ${
-                    isCameraLoading 
-                      ? 'opacity-50 cursor-not-allowed bg-gray-500/20 text-gray-400 border border-gray-500/30' 
-                      : isCameraActive 
-                        ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30' 
-                        : 'bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 border border-cyan-500/30'
-                  }`}
-                >
-                  <Camera size={16} />
-                  {isCameraLoading ? 'Loading...' : isCameraActive ? 'Stop Tracking' : 'Start Hand Tracking'}
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+      <video ref={videoRef} className="hidden" playsInline muted />
     </div>
   );
 }
