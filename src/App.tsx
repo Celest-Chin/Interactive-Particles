@@ -142,7 +142,8 @@ export default function App() {
               <Camera size={14} /> Start Hand Tracking
             </button>
           </div>
-        )
+         )}
+
       </div>
 
       <video ref={videoRef} className="hidden" playsInline muted />
