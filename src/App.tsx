@@ -135,8 +135,6 @@ export default function App() {
                   alt="Celest 凱棋 Signature" 
                   className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]"
                 />
-              </div>
-
               <span className="block text-gray-400 text-2xl md:text-4xl mb-12 font-light tracking-wide">Interactive Particles</span>
 
               <button 
