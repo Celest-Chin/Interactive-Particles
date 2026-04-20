@@ -1,20 +1,8 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 3D Particle Interactive Canvas
+### Redefining Brand Storytelling through Strategy & AI.
 
-# Run and deploy your AI Studio app
+## 👾 Experience with Palm ✋
+An immersive, AI-generated 3D particle system. Guide particle movement in real-time by enabling your camera and using hand gestures.
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/ee8f4bf4-0390-4eba-b57a-cd1ebccfe801
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+[LinkedIn] https://www.linkedin.com/in/celest-chin/
