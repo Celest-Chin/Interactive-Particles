@@ -133,13 +133,9 @@ export default function App() {
               
               <div className="mb-12 relative">
                 <img 
-                  src="https://lh3.googleusercontent.com/d/13HLVLRy645mYZ_ajnwMmvM3qrtfqXhSG" 
+                  src="./signature.png" 
                   alt="Celest 凱棋 Signature" 
                   className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    // Fallback if lh3 fails
-                    e.currentTarget.src = "https://drive.google.com/thumbnail?id=13HLVLRy645mYZ_ajnwMmvM3qrtfqXhSG&sz=w1000";
                   }}
                 />
               </div>
@@ -171,15 +167,12 @@ export default function App() {
               className="group flex flex-col items-start focus:outline-none"
             >
               <motion.img 
-                src="https://lh3.googleusercontent.com/d/13HLVLRy645mYZ_ajnwMmvM3qrtfqXhSG" 
+                src="./signature.png" 
                 alt="Celest Chin Signature"
                 initial={{ filter: 'drop-shadow(0px 0px 0px rgba(0, 255, 255, 0))' }}
                 animate={{ filter: 'drop-shadow(0px 0px 8px rgba(0, 255, 255, 0.6))' }}
                 transition={{ duration: 3, delay: 0.5, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
                 className="h-10 md:h-12 object-contain transition-transform group-hover:scale-105"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.src = "https://drive.google.com/thumbnail?id=13HLVLRy645mYZ_ajnwMmvM3qrtfqXhSG&sz=w500";
                 }}
               />
               <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-1 ml-1">Interactive Particles</p>
