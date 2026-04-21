@@ -160,16 +160,32 @@ export default function App() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 right-10 z-20 pointer-events-auto">
-        {!isCameraActive && (
-          <div className="flex flex-col items-center gap-2 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-center">
+      <div className="flex flex-col items-center gap-2 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-center">
+          {isCameraActive ? (
+            <Camera size={24} className="text-blue-400 mb-2" />
+          ) : (
             <CameraOff size={24} className="text-gray-500 mb-2" />
-            <span className="text-xs text-gray-400">Camera Off</span>
-            <button onClick={toggleCamera} className="mt-4 px-6 py-2 bg-blue-600/20 border border-blue-500/50 text-blue-400 rounded-lg text-[10px] uppercase tracking-widest hover:bg-blue-600/30 transition-all flex items-center gap-2">
-              <Camera size={14} /> Start Hand Tracking
-            </button>
-          </div>
-        )}
+          )}
+          
+          <span className="text-xs text-gray-400">
+            {isCameraActive ? "Hand Tracking Active" : "Camera Off"}
+          </span>
+
+          <button 
+            onClick={toggleCamera} 
+            className={`mt-4 px-6 py-2 border rounded-lg text-[10px] uppercase tracking-widest transition-all flex items-center gap-2 ${
+              isCameraActive 
+                ? 'bg-red-600/20 border-red-500/50 text-red-400 hover:bg-red-600/30' 
+                : 'bg-blue-600/20 border-blue-500/50 text-blue-400 hover:bg-blue-600/30'
+            }`}
+          >
+            {isCameraActive ? (
+              <><CameraOff size={14} /> Stop Tracking</>
+            ) : (
+              <><Camera size={14} /> Start Tracking</>
+            )}
+          </button>
+        </div>
       </div>
 
       <video ref={videoRef} className="hidden" playsInline muted />
