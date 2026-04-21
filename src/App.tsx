@@ -159,18 +159,17 @@ export default function App() {
           </div>
         </div>
       </div>
-
-      <div className="flex flex-col items-center gap-2 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-center">
+{/* 右下角相机控制面板 - 修正后的完整块 */}
+      <div className="absolute bottom-10 right-10 z-20 pointer-events-auto">
+        <div className="flex flex-col items-center gap-2 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-center">
           {isCameraActive ? (
             <Camera size={24} className="text-blue-400 mb-2" />
           ) : (
             <CameraOff size={24} className="text-gray-500 mb-2" />
           )}
-          
           <span className="text-xs text-gray-400">
             {isCameraActive ? "Hand Tracking Active" : "Camera Off"}
           </span>
-
           <button 
             onClick={toggleCamera} 
             className={`mt-4 px-6 py-2 border rounded-lg text-[10px] uppercase tracking-widest transition-all flex items-center gap-2 ${
@@ -179,11 +178,7 @@ export default function App() {
                 : 'bg-blue-600/20 border-blue-500/50 text-blue-400 hover:bg-blue-600/30'
             }`}
           >
-            {isCameraActive ? (
-              <><CameraOff size={14} /> Stop Tracking</>
-            ) : (
-              <><Camera size={14} /> Start Tracking</>
-            )}
+            {isCameraActive ? <><CameraOff size={14} /> Stop Tracking</> : <><Camera size={14} /> Start Tracking</>}
           </button>
         </div>
       </div>
