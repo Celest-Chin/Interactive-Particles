@@ -26,7 +26,15 @@ export default function App() {
     engineRef.current = engine;
     return () => engine.dispose();
   }, []);
-
+ useEffect(() => {
+    if (engineRef.current) {
+      engineRef.current.updateSettings?.({
+        shape,
+        color,
+        size: particleSize,
+      });
+    }
+  }, [shape, color, particleSize]);
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
@@ -87,17 +95,26 @@ export default function App() {
               {isCameraActive ? <CameraOff size={20} /> : <Camera size={20} />}
             </button>
             <button 
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
+              onClick={async () => {
+                if (navigator.share) {
+                  try {
+                    await navigator.share({
+                      title: 'Interactive Particles',
+                      text: '看看这个超酷的 3D 粒子效果！',
+                      url: window.location.href,
+                    });
+                  } catch (err) {
+                    console.log('用户取消分享');
+                  }
+                } else {
+                  await navigator.clipboard.writeText(window.location.href);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }
               }} 
               className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md"
             >
               {copied ? <Check size={20} className="text-green-400" /> : <Share2 size={20} />}
-            </button>
-            <button onClick={toggleFullscreen} className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md">
-              {isFullscreen ? <Minimize size={20} /> : <Maximize size={20} />}
             </button>
           </div>
         </div>
