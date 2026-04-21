@@ -107,10 +107,6 @@ export default function App() {
                     console.log('用户取消分享');
                   }
                 } else {
-                  } catch (err) {
-                    console.log('用户取消分享');
-                  }
-                } else {
                   await navigator.clipboard.writeText(window.location.href);
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
