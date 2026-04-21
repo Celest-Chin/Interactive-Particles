@@ -99,10 +99,14 @@ export default function App() {
                 if (navigator.share) {
                   try {
                     await navigator.share({
-                      title: 'Interactive Particles',
-                      text: '看看这个超酷的 3D 粒子效果！',
+                      title: 'Celest Chin | 3D Particle Interactive Canvas',
+                      text: 'Enabling your camera and using hand gestures.',
                       url: window.location.href,
                     });
+                  } catch (err) {
+                    console.log('用户取消分享');
+                  }
+                } else {
                   } catch (err) {
                     console.log('用户取消分享');
                   }
