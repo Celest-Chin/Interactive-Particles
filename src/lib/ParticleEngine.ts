@@ -98,7 +98,17 @@ export class ParticleEngine {
     // Make the scale difference much more dramatic: 0.3 (closed) to 2.5 (open)
     this.targetHandScale = 0.3 + openness * 2.2; 
   }
-  
+  public updateSettings(params: { shape?: ShapeType; color?: string; size?: number }) {
+    if (params.shape) {
+      this.setShape(params.shape);
+    }
+    if (params.color) {
+      this.setColor(params.color);
+    }
+    if (params.size !== undefined) {
+      this.setParticleSize(params.size);
+    }
+  }
   private generateShape(shape: ShapeType) {
     for (let i = 0; i < this.particleCount; i++) {
       const i3 = i * 3;
